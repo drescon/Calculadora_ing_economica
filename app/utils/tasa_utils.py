@@ -1,4 +1,3 @@
-# app/utils/tasa_utils.py
 PERIODS_PER_YEAR = {
     "Anual": 1,
     "Semestral": 2,
