@@ -99,3 +99,39 @@ class CreditCalculator:
         n = int(years * self.periodicity_map[periodicidad_pago])
         if abs(i) < 1e-15: return r * n
         return r * (((1 + i)**n - 1) / i) * (1 + i)
+
+    def capitalization_schedule(self, aporte, rate_percent, tipo_tasa, periodo_tasa, years, periodicidad_pago):
+        """
+        Generates a schedule for capitalization (savings) with Annuity Due logic (payments at start of period).
+        Returns a list of dictionaries with period details.
+        """
+        i = self._rate_per_period(rate_percent, tipo_tasa, periodo_tasa, periodicidad_pago)
+        n = int(years * self.periodicity_map[periodicidad_pago])
+        
+        schedule = []
+        balance = 0.0
+        total_interest = 0.0
+        total_contributed = 0.0
+
+        for period in range(1, n + 1):
+            # Annuity Due: Interest is earned on (Balance + Contribution) because contribution is at start
+            start_balance = balance
+            contribution = aporte
+            
+            # Interest earned this period
+            interest = (start_balance + contribution) * i
+            
+            end_balance = start_balance + contribution + interest
+            
+            balance = end_balance
+            total_interest += interest
+            total_contributed += contribution
+            
+            schedule.append({
+                "period": period,
+                "aporte": round(contribution, 2),
+                "interes": round(interest, 2),
+                "saldo": round(balance, 2)
+            })
+            
+        return schedule
