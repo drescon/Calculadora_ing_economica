@@ -55,3 +55,6 @@ class MainController:
 
     def annuity_fv(self, base, rate, tipo, p_tasa, years, p_pago):
         return self.model.annuity_due_future_from_payment(base, rate, tipo, p_tasa, years, p_pago)
+
+    def get_capitalization_schedule(self, aporte, rate, tipo, p_tasa, years, p_pago):
+        return self.model.capitalization_schedule(aporte, rate, tipo, p_tasa, years, p_pago)

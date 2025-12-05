@@ -43,12 +43,28 @@ Para correr la aplicación desde el código fuente:
 python main.py
 ```
 
-## Generar Ejecutable (Windows)
+## Generar Ejecutable (Windows) - Paso a Paso
 
-Para crear un archivo `.exe` independiente, ejecute el siguiente comando en su terminal (asegúrese de tener `pyinstaller` instalado):
+Siga estos pasos para crear un archivo `.exe` independiente de la aplicación:
 
-```bash
-pyinstaller --noconsole --onefile --name="CalculadoraCreditos" main.py
-```
+1.  **Instalar dependencias**:
+    Asegúrese de haber instalado todas las librerías necesarias, incluyendo `pyinstaller`.
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-El ejecutable se generará en la carpeta `dist/`.
+2.  **Ejecutar PyInstaller**:
+    Corra el siguiente comando en la terminal (estando en la carpeta raíz del proyecto):
+    ```bash
+    pyinstaller --noconsole --onefile --name="CalculadoraCreditos" main.py
+    ```
+    *   `--noconsole`: Oculta la ventana de consola negra al ejecutar la app.
+    *   `--onefile`: Empaqueta todo en un único archivo `.exe`.
+    *   `--name`: Define el nombre del archivo de salida.
+
+3.  **Localizar el ejecutable**:
+    Una vez finalizado el proceso, encontrará el archivo `CalculadoraCreditos.exe` en la carpeta `dist/` que se ha creado en su proyecto.
+
+4.  **Ejecutar**:
+    Puede mover este archivo a cualquier ubicación y ejecutarlo con doble clic.
+
